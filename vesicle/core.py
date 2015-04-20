@@ -151,7 +151,7 @@ class Point(geometry.Point):
             #self.nearest_neighbour_point = minp
             return self.nearest_neighbour_dist
 
-    def get_nearest_lateral_neighbour(self, pointli, profile):
+    def get_nearest_lateral_neighbour(self, pointli):
         """Determine distance along profile border to nearest neighbour."""
         # Assumes that only valid (projectable, within shell etc) points
         # are in pointli
@@ -159,7 +159,7 @@ class Point(geometry.Point):
         minp = Point()
         for p in pointli:
             if p is not self:
-                d = self.lateral_dist_to_point(p, profile.path)
+                d = self.lateral_dist_to_point(p, self.profile.path)
                 if d < mindist:
                     mindist = d
                     minp = p
@@ -172,9 +172,14 @@ class Point(geometry.Point):
 
 
 class VesicleData(geometry.SegmentedPath):
-    def __init__(self, pointlist=None):
+    def __init__(self, pointlist=None, profile=None):
         if pointlist is None:
             pointlist = []
+        self.profile = profile
+        if self.profile is not None:
+            self.opt = self.profile.opt
+        else:
+            self.opt = None
         geometry.SegmentedPath.__init__(self, pointlist)
 
     def center(self):
@@ -286,7 +291,7 @@ class ProfileData:
         if comp == "point":
             compli = self.pli
         elif comp == "vesicle":
-            compli = [Point(v.centroid()) for v in self.vli]
+            compli = [Point(v.centroid(), profile=self) for v in self.vli]
         else:
             return
         rel_dict = self.opt.__dict__["inter%s_relations" % comp]
@@ -329,7 +334,7 @@ class ProfileData:
                         pointli[i].get_nearest_neighbour(pointli))
                 if lateral_dist:
                     distdict["lateral"].append(
-                        pointli[i].get_nearest_lateral_neighbour(pointli, self))
+                        pointli[i].get_nearest_lateral_neighbour(pointli))
         distdict["shortest"] = [d for d in distdict["shortest"]
                                 if d is not None]
         distdict["lateral"] = [d for d in distdict["lateral"] if d is not None]
@@ -391,7 +396,8 @@ class ProfileData:
                     raise ProfileError(self,
                                        "PIXELWIDTH is not a valid number")
             elif s.upper() == "VESICLE":
-                self.vli.append(VesicleData(self.__get_coords(li, "vesicle")))
+                self.vli.append(VesicleData(self.__get_coords(li, "vesicle"),
+                                            self))
             elif s.upper() == "PROFILE_BORDER":
                 self.path = ProfileBorderData(self.__get_coords(li, "path"),
                                               self)
