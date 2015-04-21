@@ -1,0 +1,4 @@
+2015-04-21:
+- Minor bug fix.
+2014-11-11:
+- First public release.
