@@ -154,104 +154,104 @@ class MainFrame ( wx.Frame ):
 		
 		AnalysisOptionsSizer.Add( VesicleSizer, 1, wx.ALL|wx.EXPAND, 5 )
 		
-		PointSizer = wx.StaticBoxSizer( wx.StaticBox( self.AnalysisOptionsTab, wx.ID_ANY, u"Point options" ), wx.VERTICAL )
+		ParticleSizer = wx.StaticBoxSizer( wx.StaticBox( self.AnalysisOptionsTab, wx.ID_ANY, u"Particle options" ), wx.VERTICAL )
 		
-		PointSizer2 = wx.GridBagSizer( 0, 0 )
-		PointSizer2.SetFlexibleDirection( wx.BOTH )
-		PointSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+		ParticleSizer2 = wx.GridBagSizer( 0, 0 )
+		ParticleSizer2.SetFlexibleDirection( wx.BOTH )
+		ParticleSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		self.SpatResLabel = wx.StaticText( PointSizer.GetStaticBox(), wx.ID_ANY, u"Spatial resolution:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.SpatResLabel = wx.StaticText( ParticleSizer.GetStaticBox(), wx.ID_ANY, u"Spatial resolution:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.SpatResLabel.Wrap( -1 )
 		self.SpatResLabel.SetToolTip( u"Spatial resolution of the point pattern" )
 		
-		PointSizer2.Add( self.SpatResLabel, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		ParticleSizer2.Add( self.SpatResLabel, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
-		self.SpatResSpinCtrl = wx.SpinCtrl( PointSizer.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 75,-1 ), wx.SP_ARROW_KEYS, 0, 1000, 25 )
+		self.SpatResSpinCtrl = wx.SpinCtrl( ParticleSizer.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 75,-1 ), wx.SP_ARROW_KEYS, 0, 1000, 25 )
 		self.SpatResSpinCtrl.SetToolTip( u"Spatial resolution of the point pattern" )
 		
-		PointSizer2.Add( self.SpatResSpinCtrl, wx.GBPosition( 0, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+		ParticleSizer2.Add( self.SpatResSpinCtrl, wx.GBPosition( 0, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 		
-		self.SpatResUnitLabel = wx.StaticText( PointSizer.GetStaticBox(), wx.ID_ANY, u"metric units", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
+		self.SpatResUnitLabel = wx.StaticText( ParticleSizer.GetStaticBox(), wx.ID_ANY, u"metric units", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
 		self.SpatResUnitLabel.Wrap( -1 )
 		self.SpatResUnitLabel.SetToolTip( u"Spatial resolution of the point pattern" )
 		
-		PointSizer2.Add( self.SpatResUnitLabel, wx.GBPosition( 0, 2 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		ParticleSizer2.Add( self.SpatResUnitLabel, wx.GBPosition( 0, 2 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
-		self.ShellWidthLabel = wx.StaticText( PointSizer.GetStaticBox(), wx.ID_ANY, u"Shell width:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.ShellWidthLabel = wx.StaticText( ParticleSizer.GetStaticBox(), wx.ID_ANY, u"Shell width:", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.ShellWidthLabel.Wrap( -1 )
 		self.ShellWidthLabel.SetToolTip( u"Points farther than this from the postsynaptic element are discarded" )
 		
-		PointSizer2.Add( self.ShellWidthLabel, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		ParticleSizer2.Add( self.ShellWidthLabel, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
-		self.ShellWidthSpinCtrl = wx.SpinCtrl( PointSizer.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 75,-1 ), wx.SP_ARROW_KEYS, 0, 1000, 200 )
+		self.ShellWidthSpinCtrl = wx.SpinCtrl( ParticleSizer.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 75,-1 ), wx.SP_ARROW_KEYS, 0, 1000, 200 )
 		self.ShellWidthSpinCtrl.SetToolTip( u"Points farther than this from the postsynaptic element are discarded" )
 		
-		PointSizer2.Add( self.ShellWidthSpinCtrl, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+		ParticleSizer2.Add( self.ShellWidthSpinCtrl, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 		
-		self.ShellWidthUnitLabel = wx.StaticText( PointSizer.GetStaticBox(), wx.ID_ANY, u"metric units", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
+		self.ShellWidthUnitLabel = wx.StaticText( ParticleSizer.GetStaticBox(), wx.ID_ANY, u"metric units", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
 		self.ShellWidthUnitLabel.Wrap( -1 )
 		self.ShellWidthUnitLabel.SetToolTip( u"Points farther than this from the postsynaptic element are discarded" )
 		
-		PointSizer2.Add( self.ShellWidthUnitLabel, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+		ParticleSizer2.Add( self.ShellWidthUnitLabel, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 		
 		
-		PointSizer.Add( PointSizer2, 1, wx.EXPAND, 5 )
+		ParticleSizer.Add( ParticleSizer2, 1, wx.EXPAND, 5 )
 		
-		InterpointSizer = wx.StaticBoxSizer( wx.StaticBox( PointSizer.GetStaticBox(), wx.ID_ANY, u"Interpoint distances" ), wx.VERTICAL )
+		InterparticleSizer = wx.StaticBoxSizer( wx.StaticBox( ParticleSizer.GetStaticBox(), wx.ID_ANY, u"Interparticle distances" ), wx.VERTICAL )
 		
-		InterpointSizer2 = wx.GridBagSizer( 0, 0 )
-		InterpointSizer2.SetFlexibleDirection( wx.BOTH )
-		InterpointSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+		InterparticleSizer2 = wx.GridBagSizer( 0, 0 )
+		InterparticleSizer2.SetFlexibleDirection( wx.BOTH )
+		InterparticleSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		InterpointModeChoiceChoices = []
-		self.InterpointModeChoice = wx.Choice( InterpointSizer.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, InterpointModeChoiceChoices, 0 )
-		self.InterpointModeChoice.SetSelection( 0 )
-		self.InterpointModeChoice.SetToolTip( u"Type of distance to calculate" )
+		InterparticleModeChoiceChoices = []
+		self.InterparticleModeChoice = wx.Choice( InterparticleSizer.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, InterparticleModeChoiceChoices, 0 )
+		self.InterparticleModeChoice.SetSelection( 0 )
+		self.InterparticleModeChoice.SetToolTip( u"Type of distance to calculate" )
 		
-		InterpointSizer2.Add( self.InterpointModeChoice, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
+		InterparticleSizer2.Add( self.InterparticleModeChoice, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.EXPAND, 5 )
 		
-		InterpointRelationsCheckListBoxChoices = []
-		self.InterpointRelationsCheckListBox = wx.CheckListBox( InterpointSizer.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, InterpointRelationsCheckListBoxChoices, 0|wx.HSCROLL )
-		InterpointSizer2.Add( self.InterpointRelationsCheckListBox, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+		InterparticleRelationsCheckListBoxChoices = []
+		self.InterparticleRelationsCheckListBox = wx.CheckListBox( InterparticleSizer.GetStaticBox(), wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, InterparticleRelationsCheckListBoxChoices, 0|wx.HSCROLL )
+		InterparticleSizer2.Add( self.InterparticleRelationsCheckListBox, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 		
-		self.InterpointRelationsLabel = wx.StaticText( InterpointSizer.GetStaticBox(), wx.ID_ANY, u"Distances to\ndetermine:", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.InterpointRelationsLabel.Wrap( -1 )
-		InterpointSizer2.Add( self.InterpointRelationsLabel, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+		self.InterparticleRelationsLabel = wx.StaticText( InterparticleSizer.GetStaticBox(), wx.ID_ANY, u"Distances to\ndetermine:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.InterparticleRelationsLabel.Wrap( -1 )
+		InterparticleSizer2.Add( self.InterparticleRelationsLabel, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 		
-		self.InterpointModeLabel = wx.StaticText( InterpointSizer.GetStaticBox(), wx.ID_ANY, u"Distance mode:", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.InterpointModeLabel.Wrap( -1 )
-		self.InterpointModeLabel.SetToolTip( u"Type of distance to calculate" )
+		self.InterparticleModeLabel = wx.StaticText( InterparticleSizer.GetStaticBox(), wx.ID_ANY, u"Distance mode:", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.InterparticleModeLabel.Wrap( -1 )
+		self.InterparticleModeLabel.SetToolTip( u"Type of distance to calculate" )
 		
-		InterpointSizer2.Add( self.InterpointModeLabel, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		InterparticleSizer2.Add( self.InterparticleModeLabel, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 		
-		self.InterpointCheckBox = wx.CheckBox( InterpointSizer.GetStaticBox(), wx.ID_ANY, u"Calculate interpoint distances", wx.DefaultPosition, wx.DefaultSize, 0 )
-		InterpointSizer2.Add( self.InterpointCheckBox, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 2 ), wx.ALL|wx.EXPAND, 5 )
+		self.InterparticleCheckBox = wx.CheckBox( InterparticleSizer.GetStaticBox(), wx.ID_ANY, u"Calculate interparticle distances", wx.DefaultPosition, wx.DefaultSize, 0 )
+		InterparticleSizer2.Add( self.InterparticleCheckBox, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 2 ), wx.ALL|wx.EXPAND, 5 )
 		
-		InterpointShortLatDistSizer = wx.FlexGridSizer( 2, 2, 0, 0 )
-		InterpointShortLatDistSizer.SetFlexibleDirection( wx.BOTH )
-		InterpointShortLatDistSizer.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+		InterparticleShortLatDistSizer = wx.FlexGridSizer( 2, 2, 0, 0 )
+		InterparticleShortLatDistSizer.SetFlexibleDirection( wx.BOTH )
+		InterparticleShortLatDistSizer.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		self.InterpointShortestDistCheckBox = wx.CheckBox( InterpointSizer.GetStaticBox(), wx.ID_ANY, u"Shortest distance", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.InterpointShortestDistCheckBox.SetToolTip( u"Shortest distance between the points" )
+		self.InterparticleShortestDistCheckBox = wx.CheckBox( InterparticleSizer.GetStaticBox(), wx.ID_ANY, u"Shortest distance", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.InterparticleShortestDistCheckBox.SetToolTip( u"Shortest distance between the particles" )
 		
-		InterpointShortLatDistSizer.Add( self.InterpointShortestDistCheckBox, 0, wx.ALL, 5 )
+		InterparticleShortLatDistSizer.Add( self.InterparticleShortestDistCheckBox, 0, wx.ALL, 5 )
 		
-		self.InterpointLateralDistCheckBox = wx.CheckBox( InterpointSizer.GetStaticBox(), wx.ID_ANY, u"Distance along profile border", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.InterpointLateralDistCheckBox.SetToolTip( u"Lateral distance along profile border between the projections of the points on the border" )
+		self.InterparticleLateralDistCheckBox = wx.CheckBox( InterparticleSizer.GetStaticBox(), wx.ID_ANY, u"Distance along profile border", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.InterparticleLateralDistCheckBox.SetToolTip( u"Lateral distance along profile border between the projections of the points on the border" )
 		
-		InterpointShortLatDistSizer.Add( self.InterpointLateralDistCheckBox, 0, wx.ALL, 5 )
-		
-		
-		InterpointSizer2.Add( InterpointShortLatDistSizer, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 3 ), wx.EXPAND, 5 )
+		InterparticleShortLatDistSizer.Add( self.InterparticleLateralDistCheckBox, 0, wx.ALL, 5 )
 		
 		
-		InterpointSizer.Add( InterpointSizer2, 1, wx.EXPAND, 5 )
+		InterparticleSizer2.Add( InterparticleShortLatDistSizer, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 3 ), wx.EXPAND, 5 )
 		
 		
-		PointSizer.Add( InterpointSizer, 0, wx.ALL|wx.EXPAND, 5 )
+		InterparticleSizer.Add( InterparticleSizer2, 1, wx.EXPAND, 5 )
 		
 		
-		AnalysisOptionsSizer.Add( PointSizer, 1, wx.ALL|wx.EXPAND, 5 )
+		ParticleSizer.Add( InterparticleSizer, 0, wx.ALL|wx.EXPAND, 5 )
+		
+		
+		AnalysisOptionsSizer.Add( ParticleSizer, 1, wx.ALL|wx.EXPAND, 5 )
 		
 		
 		self.AnalysisOptionsTab.SetSizer( AnalysisOptionsSizer )
@@ -269,7 +269,7 @@ class MainFrame ( wx.Frame ):
 		self.GenerateOutputLabel.Wrap( -1 )
 		OutputOptionsSizer.Add( self.GenerateOutputLabel, 0, wx.ALL, 5 )
 		
-		OutputCheckListBoxChoices = [u"Profile summary", u"Vesicle summary", u"Point summary", u"Random summary", u"Session summary"]
+		OutputCheckListBoxChoices = [u"Profile summary", u"Vesicle summary", u"Particle summary", u"Random summary", u"Session summary"]
 		self.OutputCheckListBox = wx.CheckListBox( self.OutputOptionsTab, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, OutputCheckListBoxChoices, 0 )
 		OutputOptionsSizer.Add( self.OutputCheckListBox, 0, wx.ALL, 5 )
 		
@@ -427,7 +427,7 @@ class MainFrame ( wx.Frame ):
 		self.VesicleOverlapCheckBox.Bind( wx.EVT_CHECKBOX, self.OnInterpointCheckbox )
 		self.PrioritizeLumenCheckBox.Bind( wx.EVT_CHECKBOX, self.OnInterpointCheckbox )
 		self.IntervesicleCheckBox.Bind( wx.EVT_CHECKBOX, self.OnIntervesicleCheckbox )
-		self.InterpointCheckBox.Bind( wx.EVT_CHECKBOX, self.OnInterpointCheckbox )
+		self.InterparticleCheckBox.Bind( wx.EVT_CHECKBOX, self.OnInterparticleCheckbox )
 		self.OtherSuffixCheckBox.Bind( wx.EVT_CHECKBOX, self.OnOtherSuffixCheckBox )
 		self.SaveLogCheckBox.Bind( wx.EVT_CHECKBOX, self.OnSaveLogCheckBox )
 		self.LogFilePickerCtrl.Bind( wx.EVT_FILEPICKER_CHANGED, self.OnSaveLogCheckBox )
@@ -457,6 +457,8 @@ class MainFrame ( wx.Frame ):
 	def OnIntervesicleCheckbox( self, event ):
 		event.Skip()
 	
+	def OnInterparticleCheckbox( self, event ):
+		event.Skip()
 	
 	def OnOtherSuffixCheckBox( self, event ):
 		event.Skip()
