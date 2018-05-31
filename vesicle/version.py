@@ -6,7 +6,7 @@ date = ("May", "28", "2018")
 title = "Vesicle"
 author = "Max Larsson"
 email = "max.larsson@liu.se"
-homepage = "www.hu.liu.se/forskning/larsson-max/software"
+homepage = "www.liu.se/medfak/forskning/larsson-max/software"
 if hasattr(sys, 'frozen'):
     if '_MEIPASS2' in os.environ:
         path = os.environ['_MEIPASS2']

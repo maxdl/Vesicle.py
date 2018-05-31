@@ -367,83 +367,73 @@ class Profile:
                              % (ptypestr, self.n_discarded[ptype]))
 
     def __determine_interdistlis(self, comp):
-        if comp == "particle":
+        if comp == 'particle':
             compli = self.pli
-        elif comp == "vesicle":
+        elif comp == 'vesicle':
             compli = [Point(v.centroid(), profile=self) for v in self.vli]
         else:
             return
-        rel_dict = self.opt.__dict__["inter%s_relations" % comp]
-        dist_mode = self.opt.__dict__["inter%s_dist_mode" % comp]
-        shortest_dist = self.opt.__dict__["inter%s_shortest_dist" % comp]
-        lateral_dist = self.opt.__dict__["inter%s_lateral_dist" % comp]
-        if not True in [val for key, val in rel_dict.items()]:
+        rel_dict = self.opt.__dict__['inter%s_relations' % comp]
+        dist_mode = self.opt.__dict__['inter%s_dist_mode' % comp]
+        shortest_dist = self.opt.__dict__['inter%s_shortest_dist' % comp]
+        lateral_dist = self.opt.__dict__['inter%s_lateral_dist' % comp]
+        if True not in [val for key, val in rel_dict.items()]:
             return
         sys.stdout.write("Determining interparticle distances...\n")
-        if rel_dict["%s - %s" % (comp, comp)]:
-            self.interdistlis["%s - %s" % (comp, comp)] = \
-                self.__get_same_interdistances(compli, dist_mode, shortest_dist,
-                                               lateral_dist)
-        if self.opt.use_random and rel_dict["random - %s" % comp]:
-            self.interdistlis["random - %s" % comp] = \
-                self.__get_interdistances(self.randomli, compli, dist_mode,
-                                          shortest_dist, lateral_dist)
-        if self.opt.use_random and rel_dict["%s - random" % comp]:
-            self.interdistlis["%s - random" % comp] = \
-                self.__get_interdistances(self.randomli, compli, dist_mode,
-                                          shortest_dist, lateral_dist)
+        if rel_dict['%s - %s' % (comp, comp)]:
+            self.interdistlis['%s - %s' % (comp, comp)] = \
+                self.__get_same_interdistances(compli, dist_mode, shortest_dist, lateral_dist)
+        if self.opt.use_random and rel_dict['random - %s' % comp]:
+            self.interdistlis['random - %s' % comp] = \
+                self.__get_interdistances(self.randomli, compli, dist_mode, shortest_dist,
+                                          lateral_dist)
+        if self.opt.use_random and rel_dict['%s - random' % comp]:
+            self.interdistlis['%s - random' % comp] = \
+                self.__get_interdistances(compli, self.randomli, dist_mode, shortest_dist,
+                                          lateral_dist)
 
     def __get_same_interdistances(self, pointli, dist_mode, shortest_dist,
                                   lateral_dist):
-        distdict = {"shortest": [], "lateral": []}
+        distdict = {'shortest': [], 'lateral': []}
         for i in range(0, len(pointli)):
             if self.opt.stop_requested:
                 return [], []
             if dist_mode == 'all':
                 for j in range(i + 1, len(pointli)):
                     if shortest_dist:
-                        distdict["shortest"].append(pointli[i].dist(pointli[j]))
+                        distdict['shortest'].append(pointli[i].dist(pointli[j]))
                     if lateral_dist:
-                        distdict["lateral"].append(
-                            pointli[i].lateral_dist_to_point(pointli[j], self.path))
+                        distdict['lateral'].append(pointli[i].lateral_dist_to_point(pointli[j], 
+                                                                                    self.path))
             elif dist_mode == 'nearest neighbour':
                 if shortest_dist:
-                    distdict["shortest"].append(
-                        pointli[i].get_nearest_neighbour(pointli))
+                    distdict['shortest'].append(pointli[i].get_nearest_neighbour(pointli))
                 if lateral_dist:
-                    distdict["lateral"].append(
-                        pointli[i].get_nearest_lateral_neighbour(pointli))
-        distdict["shortest"] = [d for d in distdict["shortest"]
-                                if d is not None]
-        distdict["lateral"] = [d for d in distdict["lateral"] if d is not None]
+                    distdict['lateral'].append(pointli[i].get_nearest_lateral_neighbour(pointli))
+        distdict['shortest'] = [d for d in distdict['shortest'] if d is not None]
+        distdict['lateral'] = [d for d in distdict['lateral'] if d is not None]
         return distdict
 
-    def __get_interdistances(self, pointli, pointli2, dist_mode, shortest_dist,
-                             lateral_dist):
+    def __get_interdistances(self, pointli, pointli2, dist_mode, shortest_dist, lateral_dist):
         if pointli2 is None:
             pointli2 = []
-        dli = []
-        latdli = []
-        distdict = {"shortest": [], "lateral": []}
+        distdict = {'shortest': [], 'lateral': []}
         for i, p in enumerate(pointli):
             if self.opt.stop_requested:
                 return [], []
             if dist_mode == 'all':
                 for p2 in pointli2:
                     if shortest_dist:
-                        dli.append(p.dist(p2))
+                        distdict['shortest'].append(p.dist(p2))
                     if lateral_dist:
-                        latdli.append(p.lateral_dist_to_point(p2, self.path))
+                        distdict['lateral'].append(p.lateral_dist_to_point(p2, self.path))
             elif dist_mode == 'nearest neighbour':
                 if shortest_dist:
-                    distdict["shortest"].append(
-                        p.get_nearest_neighbour(pointli2))
+                    distdict['shortest'].append(p.get_nearest_neighbour(pointli2))
                 if lateral_dist:
-                    distdict["lateral"].append(
-                        p.get_nearest_neighbour(pointli2))
-        distdict["shortest"] = [d for d in distdict["shortest"]
-                                if d is not None]
-        distdict["lateral"] = [d for d in distdict["lateral"] if d is not None]
+                    distdict['lateral'].append(p.get_nearest_lateral_neighbour(pointli2))
+        distdict['shortest'] = [d for d in distdict['shortest'] if d is not None]
+        distdict['lateral'] = [d for d in distdict['lateral'] if d is not None]
         return distdict
 
     def __parse(self):

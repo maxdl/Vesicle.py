@@ -11,11 +11,11 @@ analyzing vesicular morphology in non-immunogold labeled specimens.
 
 Vesicle.py is used in conjunction with its companion ImageJ plugin, Vesicle.IJ.
 
-Please see the `website <http://www.hu.liu.se/forskning/larsson-max/software>`_ 
+Please see the `website <http://www.liu.se/medfak/forskning/larsson-max/software>`_
 for more information.
 
 License
 -------
-Copyright 2001-2014 Max Larsson `(max.larsson@liu.se) <mailto:max.larsson@liu.se>`_
+Copyright 2001-2018 Max Larsson `(max.larsson@liu.se) <mailto:max.larsson@liu.se>`_
 
 Vesicle.py is released under the MIT license.

@@ -1,3 +1,4 @@
+import itertools
 import os.path
 import time
 from .core import *
@@ -197,16 +198,12 @@ def save_output(profileli, opt):
                          enumerate(pro.__dict__[pli])])
 
     def write_inter_summaries(comp):
-
-        def _m(x):
-            return m(x, pro.pixelwidth)
-
-        if not opt.__dict__["determine_inter%s_dists" % comp]:
+        if not opt.__dict__['determine_inter%s_dists' % comp]:
             return
-        original_inter_relations = opt.__dict__["inter%s_relations" % comp]
-        dist_mode = opt.__dict__["inter%s_dist_mode" % comp]
-        shortest_dist = opt.__dict__["inter%s_shortest_dist" % comp]
-        lateral_dist = opt.__dict__["inter%s_lateral_dist" % comp]
+        original_inter_relations = opt.__dict__['inter%s_relations' % comp]
+        dist_mode = opt.__dict__['inter%s_dist_mode' % comp]
+        shortest_dist = opt.__dict__['inter%s_shortest_dist' % comp]
+        lateral_dist = opt.__dict__['inter%s_lateral_dist' % comp]
         inter_rels = dict([(key, val)
                           for key, val in original_inter_relations.items()
                           if val])
@@ -240,12 +237,11 @@ def save_output(profileli, opt):
         for pro in eval_proli:
             for n, di in enumerate([pro.interdistlis[key] for key in keyli]):
                 if shortest_dist:
-                    cols[n].extend(map(_m, di["shortest"]))
+                    cols[n].extend([m(e, pro.pixelwidth) for e in di['shortest']])
                 if lateral_dist:
-                    cols[n + lateral_col0].extend(map(_m, di["lateral"]))
+                    cols[n + lateral_col0].extend([m(e, pro.pixelwidth) for e in di['lateral']])
         # transpose cols and append to table
-        table.extend(map(lambda *col: [e if e is not None else "" for e in col],
-                         *cols))
+        table.extend(list(itertools.zip_longest(*cols, fillvalue="")))
         with file_io.FileWriter("inter%s.summary" % comp, opt) as f:
             f.writerows(table)
 
