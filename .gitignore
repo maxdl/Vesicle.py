@@ -4,6 +4,7 @@
 *.spec
 copygui.bat
 gui/
+resources/
 .idea/
 CREDITS
 
