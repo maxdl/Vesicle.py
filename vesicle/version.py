@@ -1,8 +1,8 @@
 import os.path
 import sys
 
-version = "1.1.2"
-date = ("May", "31", "2018")
+version = "1.1.3"
+date = ("June", "11", "2018")
 title = "Vesicle"
 author = "Max Larsson"
 email = "max.larsson@liu.se"
